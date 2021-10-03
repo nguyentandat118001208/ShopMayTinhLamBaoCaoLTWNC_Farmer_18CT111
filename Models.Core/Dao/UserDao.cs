@@ -14,6 +14,10 @@ namespace Models.Core.Dao
         {
             db = new ShopMayTinhDbContext();
         }
+        public IEnumerable<User> ListAllPaging(int page, int pageSize) //trả về tất cả danh sách user
+        {
+            return db.Users.ToPagedList(page, pageSize);
+        }
         public long Insert(User entity)
         {
             db.Users.Add(entity);
