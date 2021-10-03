@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Models.Core.Dao;
 using Models.Core.EF;
+using PagedList;
 using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Common;
 
 namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
@@ -12,14 +13,17 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
-        public ActionResult Index()
+        public ActionResult Index(int page=1,int pageSize =10)
         {
-            return View();
+            var dao = new UserDao();
+
+            var model = dao.ListAllPaging(page, pageSize);
+            return View(model);
         }
         [HttpGet]
         public ActionResult Create()
         {
-            return Create();
+            return View();
         }
         [HttpPost]
         public ActionResult Create(User user)
