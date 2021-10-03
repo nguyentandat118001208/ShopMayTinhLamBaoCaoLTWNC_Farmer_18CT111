@@ -1,15 +1,13 @@
-﻿using Models.Core.EF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Models.Core.EF;
 
 namespace Models.Core.Dao
 {
-    class UserDao
-
+    public class UserDao
     {
         ShopMayTinhDbContext db = null;
         public UserDao()
@@ -52,4 +50,3 @@ namespace Models.Core.Dao
         }
     }
 }
-
