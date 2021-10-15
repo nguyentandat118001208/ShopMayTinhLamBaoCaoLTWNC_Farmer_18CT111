@@ -1,4 +1,4 @@
-namespace Models.Core.EF
+﻿namespace Models.Core.EF
 {
     using System;
     using System.Collections.Generic;
@@ -9,11 +9,11 @@ namespace Models.Core.EF
     [Table("User")]
     public partial class User
     {
-        [Key]
-        [Column(Order = 0)]
+        [Display(Name = "Tài Khoản")]
         public long ID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(20)]
+        [Display(Name = "mật khẩu")]
         public string UserName { get; set; }
 
         [StringLength(50)]
@@ -41,8 +41,6 @@ namespace Models.Core.EF
         [StringLength(50)]
         public string ModifiedBy { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
         public bool Status { get; set; }
     }
 }
