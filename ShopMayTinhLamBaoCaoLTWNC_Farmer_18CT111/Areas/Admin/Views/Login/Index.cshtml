@@ -2,8 +2,7 @@
 @{
     Layout = null;
 }
-
-    @model ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Models.LoginModel
+@model ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Models.LoginModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,7 +24,7 @@
                         <div class="col-lg-5">
                             <div class="card shadow-lg border-0 rounded-lg mt-5">
                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
-                                <div class="card-body">
+                                <div class="card-body">                                 
 
                                     @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                                     {
@@ -44,6 +43,7 @@
                                                 <label for="inputPassword">Password</label>
                                             </div>
                                             <div class="form-check mb-3">
+
                                                 <label>@Html.CheckBoxFor(model => model.RememberMe)</label>
                                                 <label class="form-check-label" for="inputRememberPassword">Remember Password</label>
                                             </div>
