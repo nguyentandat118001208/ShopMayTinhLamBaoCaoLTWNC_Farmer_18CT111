@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Models.Core.Dao;
 using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Common;
 using PagedList;
-namespace thiwebthinghiem2.Areas.Admin.Controllers
+namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
 {
     public class UserController : Controller
     {
@@ -35,7 +35,7 @@ namespace thiwebthinghiem2.Areas.Admin.Controllers
                 //
                 long id = dao.Insert(user);
                 if (id > 0)
-                {
+                {                   
                     return RedirectToAction("Index", "User");
                 }
                 else
