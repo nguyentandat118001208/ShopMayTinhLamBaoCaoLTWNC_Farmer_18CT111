@@ -155,15 +155,23 @@
                                         <tbody>
                                             @foreach (var item in Model)
                                             {
-                                                <tr>
-                                                    <td>
-                                                        <a href="/User/Edit/@item.ID">Sửa</a>
-                                                        <a href="/User/Delete/@item.ID">Xóa</a>
-                                                    </td>
-                                                    <td>@item.UserName</td>
-                                                    <td>@item.Name</td>
-                                                    <td>@item.Email</td>
-                                                </tr>
+                                                //Pham Nhờ Đạt
+                                            <tr id="row_@item.ID">
+                                                <td>
+                                                    <a href="/Admin/User/Edit/@item.ID">Sửa</a>
+
+                                                    @Ajax.ActionLink("Xoá", "Delete", new { @id = item.ID }, new AjaxOptions
+                                               {
+                                                   Confirm = "Chac chan ban co muon xoa khong ?",
+                                                   OnComplete = "$('#row_" + @item.ID + "').remove()",
+                                                   HttpMethod = "Delete"
+                                               })
+                                                    //
+                                                </td>
+                                                <td>@item.UserName</td>
+                                                <td>@item.Name</td>
+                                                <td>@item.Email</td>
+                                            </tr>
                                             }
                                         </tbody>
                                     </table>

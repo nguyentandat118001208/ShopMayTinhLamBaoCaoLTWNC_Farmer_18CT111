@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Models.Core.EF;
 using PagedList.Mvc;
 using PagedList;
+// Day là thuật toán cho usercontroller và LoginController
 namespace Models.Core.Dao
 {
     public class UserDao
@@ -58,7 +59,7 @@ namespace Models.Core.Dao
         {
             return db.Users.SingleOrDefault(x => x.UserName == userName);
         }
-
+        // Pham Nho Dat
         public User ViewDetail(int id)
         {
             return db.Users.Find(id);
