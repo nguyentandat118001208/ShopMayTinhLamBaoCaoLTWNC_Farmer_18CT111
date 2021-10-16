@@ -12,7 +12,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
-        public ActionResult Index(int page = 1, int pageSize = 10)
+        public ActionResult Index(int page = 1, int pageSize = 5)
         {
             var dao = new UserDao();
             var model = dao.ListAllPaging(page, pageSize);
@@ -35,7 +35,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
                 //
                 long id = dao.Insert(user);
                 if (id > 0)
-                {                   
+                {
                     return RedirectToAction("Index", "User");
                 }
                 else
@@ -45,8 +45,16 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
             }
             return View("Index");
         }
+        //Phạm Nhờ Đạt : edit user
+        public ActionResult Edit(int id)
+        {
+            var user = new UserDao().ViewDetail(id);
+            return View(user);
+        }
 
-        //Đây là Phần Edit cho danh sách người dùng  : Phạm Nhờ Đạt
+
+
+        // phạm nhờ Đạt : edit User
         [HttpPost]
         public ActionResult Edit(User user)
         {
@@ -73,7 +81,9 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
             }
             return View("Index");
         }
-        //Đây là phần xóa người dùng : Phạm Nhờ Đạt
+
+
+        //Phạm Nhờ Đạt : Delete User
         [HttpDelete]
         public ActionResult Delete(int id)
         {
