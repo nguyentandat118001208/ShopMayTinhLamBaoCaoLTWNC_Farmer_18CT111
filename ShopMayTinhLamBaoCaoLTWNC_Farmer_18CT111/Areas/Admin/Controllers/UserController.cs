@@ -45,5 +45,41 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
             }
             return View("Index");
         }
+
+        //Đây là Phần Edit cho danh sách người dùng  : Phạm Nhờ Đạt
+        [HttpPost]
+        public ActionResult Edit(User user)
+        {
+            if (ModelState.IsValid)
+            {
+                var dao = new UserDao();
+                if (!string.IsNullOrEmpty(user.Password))
+                {
+                    //ẩn    
+                    var encryptedMd5Pas = Encryptor.MD5Hash(user.Password);
+                    user.Password = encryptedMd5Pas;
+                    //
+                }
+
+                var result = dao.Update(user);
+                if (result)
+                {
+                    return RedirectToAction("Index", "User");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "cap nhat User thanh cong");
+                }
+            }
+            return View("Index");
+        }
+        //Đây là phần xóa người dùng : Phạm Nhờ Đạt
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            new UserDao().Delete(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

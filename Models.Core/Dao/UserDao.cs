@@ -21,6 +21,35 @@ namespace Models.Core.Dao
             db.SaveChanges();
             return entity.ID;
         }
+
+        //phần Update Cho Usercontroller : PHD
+        public bool Update(User entity)
+        {
+            try
+            {
+                var user = db.Users.Find(entity.ID);
+                user.Name = entity.Name;
+                if (!string.IsNullOrEmpty(entity.Password))
+                {
+                    user.Password = entity.Password;
+                }
+                user.UserName = entity.UserName;
+                user.Address = entity.Address;
+                user.Email = entity.Email;
+                user.ModifiedBy = entity.ModifiedBy;
+                user.ModifiedDate = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //logging
+                return false;
+            }
+
+
+        }
+
         public IEnumerable<User> ListAllPaging(int page, int pageSize)
         {
             return db.Users.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
@@ -29,6 +58,12 @@ namespace Models.Core.Dao
         {
             return db.Users.SingleOrDefault(x => x.UserName == userName);
         }
+
+        public User ViewDetail(int id)
+        {
+            return db.Users.Find(id);
+        }
+
         public int Login(string userName, string passWord)
         { 
             var result =db.Users.SingleOrDefault(x => x.UserName == userName);
@@ -53,5 +88,23 @@ namespace Models.Core.Dao
                 }
             }
         }
+
+       //Phần Delete cho Usercontroller để xóa người dùng: PND
+        public bool Delete(int id)
+        {
+            try
+            {
+                var user = db.Users.Find(id);
+                db.Users.Remove(user);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
+
     }
 }
