@@ -22,6 +22,20 @@ namespace Models.Core.Dao
             db.SaveChanges();
             return entity.ID;
         }
+        // THÊM MỘT THÔNG SỐ searchString
+        public IEnumerable<User> ListAllPaging(string searchString, int page, int pageSize)
+        {
+            //search
+            IQueryable<User> model = db.Users;
+            if (!string.IsNullOrEmpty(searchString))
+            { //nếu trong trường hợp khác string(khác rỗng)
+                model = model.Where(x => x.UserName.Contains(searchString) || x.Name.Contains(searchString)).OrderByDescending(x => x.CreatedDate); //contains() tìm chuỗi , OrderByDescending(): sắp xếp dần dần
+            }
+            return model.OrderByDescending(x => x.UserName.Contains(searchString)).ToPagedList(page, pageSize);
+            //
+
+            // return db.Users.OrderByDescending(x=>x.CreatedDate).ToPagedList(page, pageSize);
+        }
 
         //phần Update Cho Usercontroller : PHD
         public bool Update(User entity)

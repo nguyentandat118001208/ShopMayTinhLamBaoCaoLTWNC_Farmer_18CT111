@@ -12,10 +12,11 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
-        public ActionResult Index(int page = 1, int pageSize = 5)
+        public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
             var dao = new UserDao();
-            var model = dao.ListAllPaging(page, pageSize);
+            var model = dao.ListAllPaging(searchString, page, pageSize);
+            ViewBag.SearchString = searchString; // gán vào một cái viewbag để cái View nhận được
             return View(model);
         }
         [HttpGet]
