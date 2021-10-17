@@ -162,6 +162,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Assets\js\plugins\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
   </ItemGroup>
