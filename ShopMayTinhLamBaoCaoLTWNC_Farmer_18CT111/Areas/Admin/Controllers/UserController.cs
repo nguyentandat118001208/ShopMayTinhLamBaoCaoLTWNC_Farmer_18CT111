@@ -92,5 +92,14 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
 
             return RedirectToAction("Index");
         }
+        public JsonResult ChangeStatus(long id)
+        {
+            var result = new UserDao().ChangeStatus(id);
+            return Json(new
+            {
+                status = result
+
+            });
+        }
     }
 }
