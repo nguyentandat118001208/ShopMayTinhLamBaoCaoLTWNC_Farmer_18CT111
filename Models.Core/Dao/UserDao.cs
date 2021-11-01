@@ -103,8 +103,15 @@ namespace Models.Core.Dao
                 }
             }
         }
-
-       //Phần Delete cho Usercontroller để xóa người dùng: PND
+        //PND : bai 28
+        public bool ChangeStatus(long id)
+        {
+            var user = db.Users.Find(id);
+            user.Status = !user.Status;
+            db.SaveChanges();
+            return user.Status;
+        }
+        //Phần Delete cho Usercontroller để xóa người dùng: PND
         public bool Delete(int id)
         {
             try

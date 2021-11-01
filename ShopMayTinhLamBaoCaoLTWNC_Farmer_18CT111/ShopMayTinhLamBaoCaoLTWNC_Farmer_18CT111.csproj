@@ -1082,6 +1082,7 @@
     <Content Include="Assets\js\plugins\ckfinder\_samples\standalone.html" />
     <Content Include="Assets\js\plugins\ckfinder\_samples\standalone_v1.html" />
     <Content Include="Assets\js\scripts.js" />
+    <Content Include="Assets\js\Controller\userController.js" />
     <Content Include="Assets\pages\401.html" />
     <Content Include="Assets\pages\404.html" />
     <Content Include="Assets\pages\500.html" />

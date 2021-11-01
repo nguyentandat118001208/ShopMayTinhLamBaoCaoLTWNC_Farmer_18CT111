@@ -9,6 +9,9 @@
 @section header{
     Hien Thi Nhung Nguoi Dung
 }
+@section jsFooter{
+    <script src="/Assets/js/Controller/userController.js"></script>
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,7 +152,7 @@
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="col-md-4">
-                                                <input type="text" value="@ViewBag.SearchString" name="searchString" />
+                                                <input type="text" value="@ViewBag.SearchString" class="form-control" name="searchString" />
                                             </div>
                                             <div class="col-md-4">
                                                 <button type="submit">Tìm Kiếm</button><!--Cái Submit này sẽ đẩy searchString lên Thông Số(Index)-->
@@ -164,10 +167,12 @@
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>Tài Khoản</th>
                                                 <th>Tên</th>
                                                 <th>Email</th>
+                                                <th>Trang Thai</th>
+                                                <th>Sua&Xoa</th>
+
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -189,11 +194,13 @@
                                                     <td>@item.UserName</td>
                                                     <td>@item.Name</td>
                                                     <td>@item.Email</td>
+                                                    <!--Chung ta co quyen khoa User(tuc la khong dang nhap duoc) hoac Kich Hoat User(cho phep dang nhap) -->
+                                                    <td><a href="#" class="btn-active" data-id="@item.ID">@(item.Status ? "Kich Hoat": "Khoa")</a></td>
                                                 </tr>
                                             }
                                         </tbody>
                                     </table>
-                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }))
                                 </div>
                             </div>
                         </div>
