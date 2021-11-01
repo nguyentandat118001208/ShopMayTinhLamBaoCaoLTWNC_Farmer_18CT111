@@ -17,7 +17,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "thiwebthinghiem2.Controllers" }
+                namespaces: new[] { "ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers" }
             );
         }
     }
