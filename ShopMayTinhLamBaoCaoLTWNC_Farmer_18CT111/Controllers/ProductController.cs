@@ -21,5 +21,15 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers
             var model = new ProductCategoryDao().ListAll();
             return PartialView(model);
         }
+        public ActionResult Category(long cateId)
+        {
+            var category = new CategoryDao().ViewDetail(cateId);
+            return View(category);
+        }
+        public ActionResult Detail(long id)
+        {
+            var product = new ProductDao().Viewdetail(id);
+            return View(product);
+        }
     }
 }
