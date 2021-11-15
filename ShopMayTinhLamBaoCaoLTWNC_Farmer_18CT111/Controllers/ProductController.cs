@@ -29,6 +29,8 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers
         public ActionResult Detail(long id)
         {
             var product = new ProductDao().Viewdetail(id);
+            ViewBag.Category = new ProductCategoryDao().ViewDetail(product.CategoryID.Value);
+            ViewBag.RelatedProducts = new ProductDao().ListRelateProducts(id);
             return View(product);
         }
     }

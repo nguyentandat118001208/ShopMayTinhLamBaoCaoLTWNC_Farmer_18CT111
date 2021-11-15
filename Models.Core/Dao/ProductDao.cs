@@ -23,6 +23,11 @@ namespace Models.Core.Dao
         {
             return db.Products.Where(x => x.TopHot != null && x.TopHot > DateTime.Now).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
+        public List<Product> ListRelateProducts(long ProductId)
+        {
+            var product = db.Products.Find(ProductId);
+            return db.Products.Where(x => x.ID != ProductId && x.CategoryID == product.CategoryID).ToList();
+        }
         public Product Viewdetail(long id)
         {
             return db.Products.Find(id);
