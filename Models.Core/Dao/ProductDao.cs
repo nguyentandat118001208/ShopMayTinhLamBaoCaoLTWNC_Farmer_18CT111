@@ -23,6 +23,14 @@ namespace Models.Core.Dao
         {
             return db.Products.Where(x => x.TopHot != null && x.TopHot > DateTime.Now).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
+        //H_36
+        public List<Product> listByCategoryId(long categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
+        {
+            totalRecord = db.Products.Where(x => x.CategoryID == categoryID).Count();
+            var model = db.Products.Where(x => x.CategoryID == categoryID).OrderByDescending(x => x.CreatedDate).Skip((pageSize - 1) * pageIndex).Take(pageSize).ToList();
+            return model;
+        }
+        //h_36
         public List<Product> ListRelateProducts(long ProductId)
         {
             var product = db.Products.Find(ProductId);
