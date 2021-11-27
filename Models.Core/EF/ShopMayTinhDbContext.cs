@@ -24,6 +24,8 @@ namespace Models.Core.EF
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
         public virtual DbSet<SystemConfig> SystemConfigs { get; set; }
         public virtual DbSet<Content_> Content_ { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Slide> Slides { get; set; }
         public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User> Users { get; set; }
@@ -62,10 +64,6 @@ namespace Models.Core.EF
                 .Property(e => e.MetaDescriptions)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Contact>()
-                .Property(e => e.Status)
-                .IsFixedLength();
-
             modelBuilder.Entity<ContentTag>()
                 .Property(e => e.TagID)
                 .IsUnicode(false);
@@ -73,10 +71,6 @@ namespace Models.Core.EF
             modelBuilder.Entity<Footer>()
                 .Property(e => e.ID)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Footer>()
-                .Property(e => e.Content)
-                .IsFixedLength();
 
             modelBuilder.Entity<Product>()
                 .Property(e => e.code)
@@ -149,6 +143,14 @@ namespace Models.Core.EF
             modelBuilder.Entity<Content_>()
                 .Property(e => e.MetaDescriptions)
                 .IsFixedLength();
+
+            modelBuilder.Entity<Order>()
+                .Property(e => e.ShipMobile)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<OrderDetail>()
+                .Property(e => e.Price)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Slide>()
                 .Property(e => e.CreatedBy)

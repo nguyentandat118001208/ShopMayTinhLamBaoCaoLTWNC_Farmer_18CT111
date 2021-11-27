@@ -14,7 +14,6 @@ namespace Models.Core.EF
         [Column(TypeName = "ntext")]
         public string Content { get; set; }
 
-        [StringLength(10)]
-        public string Status { get; set; }
+        public bool? Status { get; set; }
     }
 }
