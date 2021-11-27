@@ -12,7 +12,7 @@ namespace Models.Core.EF
         [StringLength(50)]
         public string ID { get; set; }
 
-        [StringLength(10)]
+        [Column(TypeName = "ntext")]
         public string Content { get; set; }
 
         public bool? Status { get; set; }

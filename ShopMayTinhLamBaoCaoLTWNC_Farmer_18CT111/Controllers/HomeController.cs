@@ -1,4 +1,6 @@
 ﻿using Models.Core.Dao;
+using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Common;
+using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,18 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers
         {
             var model = new MenuDao().ListByGroupId(2);
             return PartialView(model);
+        }
+        [ChildActionOnly]
+        public PartialViewResult HeaderCart()
+        {
+            var cart = Session[CommonConstants.CartSession];
+            var list = new List<Cartitem>();
+            if (cart != null)
+            {
+                list = (List<Cartitem>)cart;
+            }
+
+            return PartialView(list);
         }
         [ChildActionOnly]
         public ActionResult Footer()

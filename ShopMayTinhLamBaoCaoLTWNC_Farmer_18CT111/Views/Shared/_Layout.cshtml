@@ -32,50 +32,37 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <div class="wrap">
         <div class="header">
             <div class="headertop_desc">
-                @{ Html.RenderAction("Topmenu", "Home"); }             
+                @{ Html.RenderAction("Topmenu", "Home"); }
             </div>
-            <div class="header_top">
-                <div class="logo">
-                    <a href="index.html"><img src="/Assets/client/images/logo.png" alt="" /></a>
-                </div>
-                <div class="cart">
-                    <p>
-                        Welcome to our Online Store! <span>Cart:</span><div id="dd" class="wrapper-dropdown-2">
-                            0 item(s) - $0.00
-                            <ul class="dropdown">
-                                <li>you have no items in your Shopping cart</li>
-                            </ul>
-                        </div>
-                    </p>
-                </div>
-                <script type="text/javascript">
-function DropDown(el) {
-				this.dd = el;
-				this.initEvents();
-			}
-			DropDown.prototype = {
-				initEvents : function() {
-					var obj = this;
+            @{ Html.RenderAction("HeaderCart", "Home");}
+            <script type="text/javascript">
+                function DropDown(el) {
+                    this.dd = el;
+                    this.initEvents();
+                }
+                DropDown.prototype = {
+                    initEvents: function () {
+                        var obj = this;
 
-					obj.dd.on('click', function(event){
-						$(this).toggleClass('active');
-						event.stopPropagation();
-					});
-				}
-			}
+                        obj.dd.on('click', function (event) {
+                            $(this).toggleClass('active');
+                            event.stopPropagation();
+                        });
+                    }
+                }
 
-			$(function() {
+                $(function () {
 
-				var dd = new DropDown( $('#dd') );
+                    var dd = new DropDown($('#dd'));
 
-				$(document).click(function() {
-					// all dropdowns
-					$('.wrapper-dropdown-2').removeClass('active');
-				});
+                    $(document).click(function () {
+                        // all dropdowns
+                        $('.wrapper-dropdown-2').removeClass('active');
+                    });
 
-			});</script>
-                <div class="clear"></div>
-            </div>
+                });</script>
+            <div class="clear"></div>
+        </div>
             <div class="header_bottom">
                 @{ Html.RenderAction("Mainmenu", "Home"); }
                 <div class="search_box">
@@ -97,11 +84,12 @@ function DropDown(el) {
         @{ Html.RenderAction("Footer", "Home");}
     </div>
     <script type="text/javascript">
-$(document).ready(function() {
-			$().UItoTop({ easingType: 'easeOutQuart' });
+        $(document).ready(function () {
+            $().UItoTop({ easingType: 'easeOutQuart' });
 
-		});</script>
+        });</script>
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
+    @RenderSection("jsFooter", required: false)
 </body>
 </html>
 
