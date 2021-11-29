@@ -33,8 +33,14 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111
             defaults: new { controller = "About", action = "Index", id = UrlParameter.Optional },
             namespaces: new[] { "ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers" }
         );
-            //Q
             routes.MapRoute(
+               name: "Contact",
+               url: "lien-he",
+               defaults: new { controller = "Contact", action = "Index", id = UrlParameter.Optional },
+               namespaces: new[] { "ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers" }
+        );
+            //Q
+           routes.MapRoute(
              name: "Cart",
              url: "gio-hang",
              defaults: new { controller = "Cart", action = "Index", id = UrlParameter.Optional },
