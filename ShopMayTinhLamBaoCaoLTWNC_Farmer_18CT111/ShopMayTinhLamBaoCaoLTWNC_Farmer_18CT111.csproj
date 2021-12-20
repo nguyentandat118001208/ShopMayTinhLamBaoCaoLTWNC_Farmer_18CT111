@@ -1303,6 +1303,10 @@
       <Project>{37161a85-43af-4d7f-bee2-96e6fc851ad5}</Project>
       <Name>Models.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StaticResources\StaticResources.csproj">
+      <Project>{735e8137-9fed-4428-aa55-f9aa1ee59af1}</Project>
+      <Name>StaticResources</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

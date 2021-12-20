@@ -11,5 +11,6 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Common
         public static string USER_SESSION = "USER_SESSION";
         public static string CartSession = "CartSession";
 
+        public static string CurrentCulture { set; get; }
     }
 }
