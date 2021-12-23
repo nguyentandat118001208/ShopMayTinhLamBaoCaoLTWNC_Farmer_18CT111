@@ -130,8 +130,10 @@
     <Content Include="Assets\client\css\bootstrap.css" />
     <Content Include="Assets\client\css\bootstrap.min.css" />
     <Content Include="Assets\client\css\font-awesome.min.css" />
+    <Content Include="Assets\client\css\jquery-ui.css" />
     <Content Include="Assets\client\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
+    <Content Include="Assets\client\js\Controller\baseController.js" />
     <Content Include="Assets\client\js\Controller\cartController.js" />
     <Content Include="Assets\client\js\Controller\contactController.js" />
     <Content Include="Assets\client\js\jquery-1.11.3.min.js" />
@@ -1285,6 +1287,7 @@
     <Content Include="Views\Cart\Success.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Product\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

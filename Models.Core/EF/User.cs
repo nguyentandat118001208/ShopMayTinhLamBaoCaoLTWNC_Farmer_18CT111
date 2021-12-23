@@ -9,8 +9,6 @@ namespace Models.Core.EF
     [Table("User")]
     public partial class User
     {
-        [Key]
-        [Column(Order = 0)]
         public long ID { get; set; }
 
         [StringLength(50)]
@@ -31,6 +29,10 @@ namespace Models.Core.EF
         [StringLength(50)]
         public string Phone { get; set; }
 
+        public int? ProvinceID { get; set; }
+
+        public int? DistrictID { get; set; }
+
         public DateTime? CreatedDate { get; set; }
 
         [StringLength(50)]
@@ -41,8 +43,6 @@ namespace Models.Core.EF
         [StringLength(50)]
         public string ModifiedBy { get; set; }
 
-        [Key]
-        [Column(Order = 1)]
         public bool Status { get; set; }
     }
 }
