@@ -47,6 +47,7 @@ namespace Models.Core.EF
         public bool? Status { get; set; }
         [Display(Name = "Category_ShowOnHome", ResourceType = typeof(StaticResources.Resources))]
         public bool? ShowOnHome { get; set; }
+
         public string Language { set; get; }
     }
 }

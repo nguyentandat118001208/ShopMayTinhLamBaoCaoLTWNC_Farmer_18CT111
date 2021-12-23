@@ -58,5 +58,8 @@ namespace Models.Core.EF
 
         [StringLength(500)]
         public string Tags { get; set; }
+
+        [MaxLength(2)]
+        public byte[] Language { get; set; }
     }
 }

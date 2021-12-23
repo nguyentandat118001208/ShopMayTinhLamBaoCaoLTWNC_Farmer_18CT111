@@ -52,8 +52,13 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111
           defaults: new { controller = "User", action = "Login", id = UrlParameter.Optional },
           namespaces: new[] { "ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers" }
           );
-
-        routes.MapRoute(
+            routes.MapRoute(
+       name: "Search",
+       url: "tim-kiem",
+       defaults: new { controller = "Product", action = "Search", id = UrlParameter.Optional },
+       namespaces: new[] { "ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers" }
+       );
+            routes.MapRoute(
                 name: "Payment",
                 url: "thanh-toan",
                 defaults: new { controller = "Cart", action = "Payment", id = UrlParameter.Optional },
