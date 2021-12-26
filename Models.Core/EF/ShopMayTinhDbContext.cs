@@ -185,5 +185,7 @@ namespace Models.Core.EF
                 .Property(e => e.ID)
                 .IsUnicode(false);
         }
+
+        public System.Data.Entity.DbSet<ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Models.LoginModel> LoginModels { get; set; }
     }
 }
