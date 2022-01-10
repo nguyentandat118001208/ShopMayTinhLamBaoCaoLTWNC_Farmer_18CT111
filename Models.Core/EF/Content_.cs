@@ -6,7 +6,6 @@ namespace Models.Core.EF
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Content*")]
     public partial class Content_
     {
         public long ID { get; set; }
@@ -58,8 +57,5 @@ namespace Models.Core.EF
 
         [StringLength(500)]
         public string Tags { get; set; }
-
-        [MaxLength(2)]
-        public byte[] Language { get; set; }
     }
 }

@@ -12,6 +12,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
     public class UserController : Controller
     {
         // GET: Admin/User
+        [HasCredential(RoleID ="VIEW_USER")]
         public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
             var dao = new UserDao();
@@ -20,11 +21,13 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
             return View(model);
         }
         [HttpGet]
+        [HasCredential(RoleID = "ADD_USER")]
         public ActionResult Create()
         {
             return View();
         }
         [HttpPost]
+        [HasCredential(RoleID = "ADD_USER")]
         public ActionResult Create(User user)
         {
             if (ModelState.IsValid)
@@ -47,6 +50,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
             return View("Index");
         }
         //Phạm Nhờ Đạt : edit user
+        [HasCredential(RoleID = "EDIT_USER")]
         public ActionResult Edit(int id)
         {
             var user = new UserDao().ViewDetail(id);
@@ -57,6 +61,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
 
         // phạm nhờ Đạt : edit User
         [HttpPost]
+        [HasCredential(RoleID = "EDIT_USER")]
         public ActionResult Edit(User user)
         {
             if (ModelState.IsValid)
@@ -86,12 +91,14 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
 
         //Phạm Nhờ Đạt : Delete User
         [HttpDelete]
+        [HasCredential(RoleID = "DELETE_USER")]
         public ActionResult Delete(int id)
         {
             new UserDao().Delete(id);
 
             return RedirectToAction("Index");
         }
+        [HasCredential(RoleID = "EDIT_USER")]
         public JsonResult ChangeStatus(long id)
         {
             var result = new UserDao().ChangeStatus(id);

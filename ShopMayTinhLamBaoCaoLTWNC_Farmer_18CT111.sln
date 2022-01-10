@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopMayTinhLamBaoCaoLTWNC_F
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaticResources", "StaticResources\StaticResources.csproj", "{735E8137-9FED-4428-AA55-F9AA1EE59AF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{1A09A481-C0D5-4973-8915-BA26C4B1552C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{735E8137-9FED-4428-AA55-F9AA1EE59AF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{735E8137-9FED-4428-AA55-F9AA1EE59AF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{735E8137-9FED-4428-AA55-F9AA1EE59AF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A09A481-C0D5-4973-8915-BA26C4B1552C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A09A481-C0D5-4973-8915-BA26C4B1552C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A09A481-C0D5-4973-8915-BA26C4B1552C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A09A481-C0D5-4973-8915-BA26C4B1552C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

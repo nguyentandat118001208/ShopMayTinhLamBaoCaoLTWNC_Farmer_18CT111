@@ -1,4 +1,5 @@
 ﻿using Models.Core.EF;
+using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,6 @@ namespace Models.Core.Dao
             db.Orders.Add(order);
             db.SaveChanges();
             return order.ID;
-        }
+        }      
     }
 }

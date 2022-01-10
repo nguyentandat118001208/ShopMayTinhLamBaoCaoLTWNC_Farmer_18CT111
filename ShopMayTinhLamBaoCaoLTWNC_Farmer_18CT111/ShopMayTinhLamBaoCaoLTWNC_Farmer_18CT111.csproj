@@ -54,8 +54,9 @@
     <Reference Include="BotDetect.Web.UI.Mvc, Version=3.0.16.0, Culture=neutral, PublicKeyToken=74616036388b765f, processorArchitecture=MSIL">
       <HintPath>..\packages\Captcha.3.0.16.0\lib\net45\BotDetect.Web.UI.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="CKFinder">
-      <HintPath>..\..\..\..\..\..\ckfinder\bin\Release\CKFinder.dll</HintPath>
+    <Reference Include="CKFinder, Version=2.5.0.2791, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\CK\ckfinder\bin\Release\CKFinder.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
@@ -138,6 +139,7 @@
     <Content Include="Assets\client\css\font-awesome.min.css" />
     <Content Include="Assets\client\css\jquery-ui.css" />
     <Content Include="Assets\client\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\client\images\bglaptop.jpg" />
     <Content Include="Assets\client\js\bootstrap.min.js" />
     <Content Include="Assets\client\js\Controller\baseController.js" />
     <Content Include="Assets\client\js\Controller\cartController.js" />
@@ -207,6 +209,7 @@
     <Content Include="Assets\client\js\script.js" />
     <Content Include="Assets\client\js\slides.min.jquery.js" />
     <Content Include="Assets\client\js\startstop-slider.js" />
+    <Content Include="Assets\js\Controller\productController.js" />
     <Content Include="Assets\js\datatables-simple-demo.js" />
     <Content Include="Assets\js\plugins\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\js\plugins\ckeditor\build-config.js" />
@@ -1200,9 +1203,6 @@
     <Content Include="Global.asax" />
     <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Category\CreateCategory.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\CreateContent.cshtml" />
-    <Content Include="Assets\js\plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
-    <Content Include="Assets\js\plugins\ckfinder\userfiles\.htaccess" />
     <Content Include="Assets\js\plugins\ckeditor\CHANGES.md" />
     <Content Include="Assets\js\plugins\ckeditor\LICENSE.md" />
     <Content Include="Assets\js\plugins\ckeditor\plugins\scayt\LICENSE.md" />
@@ -1217,8 +1217,6 @@
     <Content Include="Assets\js\plugins\ckeditor\samples\toolbarconfigurator\font\fontello.woff" />
     <Content Include="Assets\js\plugins\ckeditor\samples\toolbarconfigurator\lib\codemirror\LICENSE" />
     <Content Include="Assets\js\plugins\ckeditor\skins\moono\readme.md" />
-    <Content Include="Areas\Admin\Views\Content\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Content\EditContent.cshtml" />
     <Content Include="Assets\client\font\Amble-Regular-webfont.ttf" />
     <Content Include="Assets\client\images\Thumbs.db" />
     <Content Include="Assets\client\css\bootstrap-theme.css.map" />
@@ -1232,6 +1230,11 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\Shared\401.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Assets\js\plugins\ckfinder\plugins\fileeditor\codemirror\LICENSE" />
+    <Content Include="Assets\js\plugins\ckfinder\userfiles\.htaccess" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
     <None Include="Scripts\jquery-1.11.3.intellisense.js" />
     <Content Include="Scripts\jquery-1.11.3.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
@@ -1246,13 +1249,14 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
-    <Compile Include="Areas\Admin\Controllers\ContentController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Common\CommonConstants.cs" />
     <Compile Include="Common\Encryptor.cs" />
+    <Compile Include="Common\HasCredentialAttribute.cs" />
     <Compile Include="Common\UserLogin.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -1294,8 +1298,9 @@
     <Content Include="Views\Cart\Success.cshtml" />
     <Content Include="Views\Contact\Index.cshtml" />
     <Content Include="Views\Product\Search.cshtml" />
-    <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\Shared\401.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1310,6 +1315,10 @@
     <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{1a09a481-c0d5-4973-8915-ba26c4b1552c}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models.Core\Models.Core.csproj">
       <Project>{37161a85-43af-4d7f-bee2-96e6fc851ad5}</Project>
       <Name>Models.Core</Name>
