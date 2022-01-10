@@ -27,36 +27,42 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginModel model)
         {
-
             if (ModelState.IsValid)
             {
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password));
+                var result = dao.Login(model.UserName, Encryptor.MD5Hash(model.Password), true);
                 if (result == 1)
                 {
                     var user = dao.GetById(model.UserName);
                     var userSession = new UserLogin();
                     userSession.UserName = user.UserName;
                     userSession.UserID = user.ID;
+                    userSession.GroupID = user.GroupID;
+                    var listCredentials = dao.GetListCredential(model.UserName);
 
+                    Session.Add(CommonConstants.SESSION_CREDENTIALS, listCredentials);
                     Session.Add(CommonConstants.USER_SESSION, userSession);
                     return RedirectToAction("Index", "Home");
                 }
                 else if (result == 0)
                 {
-                    ModelState.AddModelError("", "tai khoan khong ton tai");
+                    ModelState.AddModelError("", "Tài khoản không tồn tại.");
                 }
                 else if (result == -1)
                 {
-                    ModelState.AddModelError("", "tai khoan dang bi khoa");
+                    ModelState.AddModelError("", "Tài khoản đang bị khoá.");
                 }
                 else if (result == -2)
                 {
-                    ModelState.AddModelError("", "tai khoan dang bi khoa");
+                    ModelState.AddModelError("", "Mật khẩu không đúng.");
+                }
+                else if (result == -3)
+                {
+                    ModelState.AddModelError("", "Tài khoản của bạn không có quyền đăng nhập.");
                 }
                 else
                 {
-                    ModelState.AddModelError("", "dang nhap khong dung");
+                    ModelState.AddModelError("", "đăng nhập không đúng.");
                 }
             }
             return View("Index");

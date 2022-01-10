@@ -82,7 +82,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
         @RenderBody()
 
     </div>
-    </div>
+    
     <div class="footer">
         @{ Html.RenderAction("Footer", "Home");}
     </div>
@@ -96,6 +96,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="/Assets/client/js/Controller/baseController.js"></script>
 
     @RenderSection("jsFooter", required: false)
+    
 </body>
 </html>
 

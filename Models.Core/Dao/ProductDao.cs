@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.Core.EF;
 using Models.Core.ViewModel;
+using PagedList;
 
 namespace Models.Core.Dao
 {
@@ -16,6 +17,35 @@ namespace Models.Core.Dao
         {
             db = new ShopMayTinhDbContext();
         }
+        public Product GetByID(long id)
+        {
+            //return db.Content_.Find(id);
+            return db.Products.SingleOrDefault(x => x.CategoryID == id);
+        }
+        public long Insert(Product entity)
+        {
+            db.Products.Add(entity);
+            db.SaveChanges();
+            return entity.ID;
+        }
+       
+        // THÊM MỘT THÔNG SỐ searchString
+             
+        public bool Delete(int id)
+        {
+            try
+            {
+                var Product = db.Products.Find(id);
+                db.Products.Remove(Product);
+                db.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+        }
         public List<Product> ListNewProduct(int top)
         {
             return db.Products.OrderByDescending(x => x.CreatedDate).Take(top).ToList();
@@ -23,6 +53,16 @@ namespace Models.Core.Dao
         public List<string> ListName(string keyword)
         {
             return db.Products.Where(x => x.Name.Contains(keyword)).Select(x => x.Name).ToList();
+        }
+        public IEnumerable<Product> ListAllPaging(string searchString, int page, int pageSize)
+        {
+            IQueryable<Product> model = db.Products;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                model = model.Where(x => x.Name.Contains(searchString) || x.Name.Contains(searchString));
+            }
+
+            return model.OrderByDescending(x => x.CreatedDate).ToPagedList(page, pageSize);
         }
         public List<ProductViewModel> ListByCategoryId(long categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
         {
@@ -81,6 +121,13 @@ namespace Models.Core.Dao
         {
             return db.Products.Where(x => x.TopHot != null && x.TopHot > DateTime.Now).OrderByDescending(x => x.CreatedDate).Take(top).ToList();
         }
+        public List<Product> ListRelatedProducts(long productId)
+        {
+            var product = db.Products.Find(productId);
+            return db.Products.Where(x => x.ID != productId && x.CategoryID == product.CategoryID).ToList();
+        }
+      
+
         //H_36
         public List<Product> listByCategoryId(long categoryID, ref int totalRecord, int pageIndex = 1, int pageSize = 2)
         {
@@ -93,6 +140,12 @@ namespace Models.Core.Dao
         {
             var product = db.Products.Find(ProductId);
             return db.Products.Where(x => x.ID != ProductId && x.CategoryID == product.CategoryID).ToList();
+        }
+        public void UpdateImages(long productId, string images)
+        {
+            var product = db.Products.Find(productId);
+            product.MoreImages = images;
+            db.SaveChanges();
         }
         public Product Viewdetail(long id)
         {

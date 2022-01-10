@@ -1,14 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Trang chủ";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var slides = (List<Models.Core.EF.Slide>)ViewBag.Slides;
-    var listViewsProducts = (List<Models.Core.EF.Product>)ViewBag.NewProducts;
+    var listNewProducts = (List<Models.Core.EF.Product>)ViewBag.NewProducts;
     var listFeatureProducts = (List<Models.Core.EF.Product>)ViewBag.ListFeatureProducts;
 }
-@section slide{
-
-
+@section slide
+{
     <div class="header_slide">
         <div class="header_bottom_left">
             <div class="categories">
@@ -36,6 +35,7 @@
                                 <div class="clear"></div>
                             </div>
                         }
+
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -55,7 +55,7 @@
         <div class="clear"></div>
     </div>
     <div class="section group">
-        @foreach (var item in listViewsProducts)
+        @foreach (var item in listNewProducts)
         {
             var url = "/chi-tiet/" + item.MetaTitle + "-" + item.ID;
             <div class="grid_1_of_4 images_1_of_4">
@@ -70,7 +70,8 @@
                     </div>
                     <div class="clear"></div>
                 </div>
-            </div>}
+            </div>
+        }
 
     </div>
     <div class="content_bottom">
@@ -98,7 +99,7 @@
                     </div>
                     <div class="clear"></div>
                 </div>
-            </div>}
+            </div>
+        }
     </div>
 </div>
-

@@ -10,5 +10,6 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111
     {
         public long UserID { set; get; }
         public string UserName { set; get; }
+        public string GroupID { set; get; }
     }
 }

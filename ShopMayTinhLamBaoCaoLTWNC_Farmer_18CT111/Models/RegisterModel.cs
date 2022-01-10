@@ -39,6 +39,6 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Models
         [Display(Name = "Điện thoại")]
         public string Phone { set; get; }
 
-
+        
     }
 }

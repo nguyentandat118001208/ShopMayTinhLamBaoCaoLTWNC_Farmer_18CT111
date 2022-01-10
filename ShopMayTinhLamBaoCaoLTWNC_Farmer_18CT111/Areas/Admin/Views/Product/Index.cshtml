@@ -1,12 +1,20 @@
-﻿@model PagedList.IPagedList<Models.Core.EF.Content_>
+﻿@model PagedList.IPagedList<Models.Core.EF.Product>
 @using PagedList.Mvc;
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
 @section header{
-    Hien Thi Content
+    Quan Ly San Pham
 }
+
+
+@section jsFooter{
+    <script src="/Assets/js/Controller/productController.js"></script>
+
+    }
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,10 +46,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="#!">Settings</a></li>
+                    <li><a class="dropdown-item" href="/Admin/User/Index">Settings</a></li>
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="#!">Logout</a></li>
+                    <li><a class="dropdown-item" href="/Admin/Login/Index">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -52,49 +60,46 @@
                 <div class="sb-sidenav-menu">
                     <div class="nav">
                         <div class="sb-sidenav-menu-heading">Core</div>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="/Admin/Home/Index.html">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                            Dashboard
+                            Trang Chu
                         </a>
                         <div class="sb-sidenav-menu-heading">Interface</div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
                             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                            Layouts
+                            Nguoi Dung
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav">
-                                <a class="nav-link" href="layout-static.html">Static Navigation</a>
-                                <a class="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
+                                <a class="nav-link" href="/Admin/User/Index">Danh Sach Nguoi Dung</a>
+                                <a class="nav-link" href="/Admin/User/Create">Them Nguoi Dung</a>
                             </nav>
                         </div>
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                             <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                            Pages
+                            Danh Muc
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                             <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                                    Authentication
+                                    Create
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="login.html">Login</a>
-                                        <a class="nav-link" href="register.html">Register</a>
-                                        <a class="nav-link" href="password.html">Forgot Password</a>
+                                        <a class="nav-link" href="/Admin/Product/Create">Tạo Sản phẩm</a>
+                                        <a class="nav-link" href="/Admin/Category/CreateCategory">Tạo Danh Mục</a>
                                     </nav>
                                 </div>
                                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseError" aria-expanded="false" aria-controls="pagesCollapseError">
-                                    Error
+                                    Quản lý sản phẩm
                                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                                 </a>
                                 <div class="collapse" id="pagesCollapseError" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
                                     <nav class="sb-sidenav-menu-nested nav">
-                                        <a class="nav-link" href="401.html">401 Page</a>
-                                        <a class="nav-link" href="404.html">404 Page</a>
-                                        <a class="nav-link" href="500.html">500 Page</a>
+                                        <a class="nav-link" href="/Admin/Product/Index">Sản Phẩm</a>
                                     </nav>
                                 </div>
                             </nav>
@@ -142,7 +147,7 @@
 
 
                                 <!--SEARCH-->
-                                @using (Html.BeginForm("Index", "Content_", FormMethod.Get))
+                                @using (Html.BeginForm("Index", "Product", FormMethod.Get))
                                 {
                                     <div class="row">
                                         <div class="col-lg-12">
@@ -162,12 +167,12 @@
                                     <table class="table table-striped table-bordered table-hover">
                                         <thead>
                                             <tr>
-                                                <th>#</th>
                                                 <th>Name</th>
-                                                <th>MetaTitle</th>
-                                                <th>DesCription</th>
                                                 <th>Image</th>
-                                                <th>Price</th>
+                                                <th>CreatedDate</th>
+                                                <th>#</th>
+
+
 
                                             </tr>
                                         </thead>
@@ -175,8 +180,13 @@
                                             @foreach (var item in Model)
                                             {
                                                 <tr id="row_@item.ID">
+                                                    <td>@item.Name</td>
+                                                    <td><img src="@item.Image" width="100" /></td>
+                                                    <td>@item.CreatedDate</td>
+                                                    <td>@item.Price</td>
                                                     <td>
-                                                        <a href="/Admin/Content/Edit/@item.ID">Sửa</a>
+                                                        <a href="#" data-id="@item.ID" class="btn-images">Quan Ly Anh</a>
+                                                        <a href="/Admin/Product/Edit/@item.ID">Sửa</a>
 
                                                         @Ajax.ActionLink("Xoá", "Delete", new { @id = item.ID }, new AjaxOptions
                                                    {
@@ -186,11 +196,7 @@
                                                    })
                                                     </td>
 
-                                                    <td>@item.Name</td>
-                                                    <td>@item.MetaTitle</td>
-                                                    <td>@item.Description</td>
-                                                    <td>@item.Image</td>
-                                                    <td>@item.Price</td>
+
                                                 </tr>
                                             }
                                         </tbody>
@@ -222,6 +228,30 @@
     <script src="js/scripts.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+    <!-- Modal -->
+    <div id="imagesManange" class="modal fade" role="dialog">
+        <div class="modal-dialog">
 
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Quan ly anh</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="imageList" style="margin:4px">
+
+                    </div>
+                    <input type="button" id="btnChooImages" class="btn btn-primary" value="chon anh" />
+                    <input type="hidden" id="hiProductID" value="0"/>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" id="btnSaveImages">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </body>
 </html>

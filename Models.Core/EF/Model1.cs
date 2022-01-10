@@ -1,4 +1,3 @@
-using Models.Core.EF;
 using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
@@ -6,10 +5,10 @@ using System.Linq;
 
 namespace Models.Core.EF
 {
-    public partial class ShopMayTinhDbContext : DbContext
+    public partial class Model1 : DbContext
     {
-        public ShopMayTinhDbContext()
-            : base("name=ShopMayTinhDbContext")
+        public Model1()
+            : base("name=Model1")
         {
         }
 
@@ -17,6 +16,7 @@ namespace Models.Core.EF
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<ContentTag> ContentTags { get; set; }
+        public virtual DbSet<Credential> Credentials { get; set; }
         public virtual DbSet<Feedback> Feedbacks { get; set; }
         public virtual DbSet<Footer> Footers { get; set; }
         public virtual DbSet<Language> Languages { get; set; }
@@ -24,18 +24,15 @@ namespace Models.Core.EF
         public virtual DbSet<MenuType> MenuTypes { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductCategory> ProductCategories { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<SystemConfig> SystemConfigs { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserGroup> UserGroups { get; set; }
         public virtual DbSet<Content_> Content_ { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Slide> Slides { get; set; }
-        public virtual DbSet<Tag> Tags { get; set; }
-
-        public virtual DbSet<Role> Roles { set; get; }
-        public virtual DbSet<Credential> Credentials { set; get; }
-
-        public virtual DbSet<UserGroup> UserGroups { set; get; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -73,6 +70,14 @@ namespace Models.Core.EF
 
             modelBuilder.Entity<ContentTag>()
                 .Property(e => e.TagID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Credential>()
+                .Property(e => e.UserGroupID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Credential>()
+                .Property(e => e.RoleID)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Footer>()
@@ -127,12 +132,20 @@ namespace Models.Core.EF
                 .Property(e => e.MetaDescriptions)
                 .IsFixedLength();
 
+            modelBuilder.Entity<Role>()
+                .Property(e => e.ID)
+                .IsUnicode(false);
+
             modelBuilder.Entity<SystemConfig>()
                 .Property(e => e.ID)
                 .IsUnicode(false);
 
             modelBuilder.Entity<SystemConfig>()
                 .Property(e => e.Type)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Tag>()
+                .Property(e => e.ID)
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
@@ -144,6 +157,10 @@ namespace Models.Core.EF
                 .IsUnicode(false);
 
             modelBuilder.Entity<User>()
+                .Property(e => e.GroupID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<User>()
                 .Property(e => e.CreatedBy)
                 .IsUnicode(false);
 
@@ -151,11 +168,17 @@ namespace Models.Core.EF
                 .Property(e => e.ModifiedBy)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<UserGroup>()
+                .Property(e => e.ID)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Content_>()
                 .Property(e => e.MetaTitle)
                 .IsUnicode(false);
 
-          
+            modelBuilder.Entity<Content_>()
+                .Property(e => e.Price)
+                .HasPrecision(18, 0);
 
             modelBuilder.Entity<Content_>()
                 .Property(e => e.CreatedBy)
@@ -173,7 +196,7 @@ namespace Models.Core.EF
                 .Property(e => e.ShipMobile)
                 .IsUnicode(false);
 
-           modelBuilder.Entity<OrderDetail>()
+            modelBuilder.Entity<OrderDetail>()
                 .Property(e => e.Price)
                 .HasPrecision(18, 0);
 
@@ -184,12 +207,6 @@ namespace Models.Core.EF
             modelBuilder.Entity<Slide>()
                 .Property(e => e.ModifiedBy)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Tag>()
-                .Property(e => e.ID)
-                .IsUnicode(false);
         }
-
-      
     }
 }

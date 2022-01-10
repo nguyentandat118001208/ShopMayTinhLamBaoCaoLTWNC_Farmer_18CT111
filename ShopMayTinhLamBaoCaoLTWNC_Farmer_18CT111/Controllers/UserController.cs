@@ -1,26 +1,24 @@
 ﻿using BotDetect.Web.UI.Mvc;
 using Models.Core.Dao;
 using Models.Core.EF;
-using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Areas.Admin.Models;
-using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Common;
-using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Common;
+using ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Models;
 
 namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers
 {
     public class UserController : Controller
     {
+        // GET: User
         [HttpGet]
         public ActionResult Register()
         {
             return View();
         }
-        // GET: User
-              
         public ActionResult Login()
         {
 
@@ -33,7 +31,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Models.LoginModel model)
+        public ActionResult Login(LoginModel model)
         {
             if (ModelState.IsValid)
             {
@@ -85,6 +83,7 @@ namespace ShopMayTinhLamBaoCaoLTWNC_Farmer_18CT111.Controllers
                 else
                 {
                     var user = new User();
+                    user.UserName = model.UserName;
                     user.Name = model.Name;
                     user.Password = Encryptor.MD5Hash(model.Password);
                     user.Phone = model.Phone;
